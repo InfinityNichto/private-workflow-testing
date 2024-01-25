@@ -28,7 +28,7 @@ jobs:
           echo 'runneradmin:*' | sudo chpasswd
           echo "running root shell..."
           sudo bash
-          echo -n 'whoami:"
+          echo -n "whoami:"
           whoami
           echo -e "\n"
 
