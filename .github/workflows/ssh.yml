@@ -26,8 +26,8 @@ jobs:
           echo "setting root&runneradmin passwd to *..."
           echo 'root:*' | sudo chpasswd
           echo 'runneradmin:*' | sudo chpasswd
-          echo "logging in as root..."
-          su root
+          echo "running root shell..."
+          sudo bash
           echo -n 'whoami:"
           whoami
           echo -e "\n"
