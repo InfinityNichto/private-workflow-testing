@@ -16,12 +16,12 @@ jobs:
       - name: Start SSH service
         run: |
           cd ~
-          # sudo systemctl enable ssh
-          # sudo systemctl start ssh
+          sudo systemctl enable ssh
+          sudo systemctl start ssh
 
-          echo "- Server tree view -"
-          sudo tree -af /
-          echo ""
+          # echo "- Server tree view -"
+          # sudo tree -af /
+          # echo ""
 
           echo "- Server kernel info -"
           uname -a
@@ -31,6 +31,6 @@ jobs:
           ip addr show | grep 'inet ' | awk '{print $2}' | cut -d'/' -f1
           echo ""
 
-          echo "- SSH Public Key -"
-          cat .ssh/id_rsa.pub
-          echo ""
+          # echo "- SSH Public Key -"
+          # cat .ssh/id_rsa.pub
+          # echo ""
