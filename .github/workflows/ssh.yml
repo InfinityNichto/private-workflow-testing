@@ -12,7 +12,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y openssh-server tree
+          sudo apt-get install -y openssh-server tree finger
       - name: Start SSH service
         run: |
           cd ~
@@ -26,8 +26,10 @@ jobs:
           echo "- Server kernel info -"
           uname -a
           cat /etc/passwd
-          echo -n "whoami:"
-          whoami
+          echo -n "finger>runner:"
+          finger runner
+          echo -n "finger>runneradmin:"
+          finger runneradmin
           echo -e "\n"
 
           echo "- Server IP Address -"
