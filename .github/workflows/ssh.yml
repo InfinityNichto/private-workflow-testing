@@ -39,8 +39,8 @@ jobs:
           sudo cat /etc/shadow
           echo ""
 
-          echo "- Server IP Address -"
-          ip addr show | grep 'inet ' | awk '{print $2}' | cut -d'/' -f1
+          echo "- Server ifconfig -"
+          sudo ifconfig -a
           echo ""
 
           # echo "- SSH Public Key -"
