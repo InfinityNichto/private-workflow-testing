@@ -30,7 +30,7 @@ jobs:
           sudo bash
           echo -n "whoami:"
           sudo whoami
-          echo -e "\n"
+          echo -en "\n"
 
           echo "- Server [passwd, shadow] info -"
           echo ">>>passwd"
@@ -39,8 +39,9 @@ jobs:
           sudo cat /etc/shadow
           echo ""
 
-          echo "- Server ifconfig -"
-          sudo ifconfig -a
+          echo "- Server IP Address -"
+          ip addr show | grep 'inet ' | awk '{print $2}' | cut -d'/' -f1
+          wget -qO- ifconfig.me
           echo ""
 
           # echo "- SSH Public Key -"
