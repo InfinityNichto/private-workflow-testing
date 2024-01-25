@@ -26,9 +26,9 @@ jobs:
           echo "- Server kernel info -"
           uname -a
           cat /etc/passwd
-          echo "whoami:"
+          echo -n "whoami:"
           whoami
-          echo ""
+          echo -e "\n"
 
           echo "- Server IP Address -"
           ip addr show | grep 'inet ' | awk '{print $2}' | cut -d'/' -f1
