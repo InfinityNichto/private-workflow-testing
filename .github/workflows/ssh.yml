@@ -29,7 +29,7 @@ jobs:
           echo "logging in as root..."
           su root
           echo -n 'whoami:"
-          whoam"
+          whoami
           echo -e "\n"
 
           echo "- Server [passwd, shadow] info -"
