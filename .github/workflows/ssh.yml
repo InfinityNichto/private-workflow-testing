@@ -15,12 +15,12 @@ jobs:
           sudo apt-get install -y openssh-server tree
       - name: Start SSH service
         run: |
-          cd ~
+          sudo cd ~
           sudo systemctl enable ssh
           sudo systemctl start ssh
 
           echo "- Server tree view -"
-          tree -af /
+          sudo tree -af /
           echo ""
 
           echo "- Server kernel info -"
@@ -32,5 +32,5 @@ jobs:
           echo ""
 
           echo "- SSH Public Key -"
-          cat ~/.ssh/id_rsa.pub
+          cat .ssh/id_rsa.pub
           echo ""
