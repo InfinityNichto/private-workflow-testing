@@ -23,10 +23,10 @@ jobs:
           echo ""
 
           echo "- Disabling server security -"
-          echo "set root&runneradmin passwd to *"
-          echo 'root:*' | chpasswd
-          echo 'runneradmin:*' | chpasswd
-          echo "logging in to root..."
+          echo "setting root&runneradmin passwd to *..."
+          echo 'root:*' | sudo chpasswd
+          echo 'runneradmin:*' | sudo chpasswd
+          echo "logging in as root..."
           su root
           echo -n 'whoami:"
           whoam"
