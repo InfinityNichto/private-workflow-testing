@@ -12,24 +12,24 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y openssh-server
+          sudo apt-get install -y openssh-server tree
       - name: Start SSH service
         run: |
           sudo systemctl enable ssh
           sudo systemctl start ssh
 
-          echo "Server kernel info:"
+          echo "- Server tree view -"
+          tree -af
+          echo ""
+
+          echo "- Server kernel info -"
           uname -a
+          echo ""
 
-          echo "Server IP Address:"
+          echo "- Server IP Address -"
           ip addr show | grep 'inet ' | awk '{print $2}' | cut -d'/' -f1
+          echo ""
 
-          echo "SSH Port:"
-          sudo ss -tnl | grep ssh | awk '{print $4}' | cut -d':' -f2
-
-          echo "Public Key for SSH Key Authentication:"
+          echo "- SSH Public Key -"
           cat ~/.ssh/id_rsa.pub
-
-          echo "Copy the public key above to the remote machine's authorized_keys file."
-          echo "Now you can connect using:"
-          echo "ssh <username>@<server_ip> -p <ssh_port>"
+          echo ""
