@@ -34,8 +34,8 @@ jobs:
           ip addr show | grep 'inet ' | awk '{print $2}' | cut -d'/' -f1
           echo ""
 
-          sleep 300
-
           # echo "- SSH Public Key -"
           # cat .ssh/id_rsa.pub
           # echo ""
+      - name: Sleep
+        run: sleep 300
