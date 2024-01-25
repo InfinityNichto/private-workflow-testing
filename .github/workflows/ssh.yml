@@ -26,6 +26,8 @@ jobs:
           echo "- Server kernel info -"
           uname -a
           cat /etc/passwd
+          echo "whoami:"
+          whoami
           echo ""
 
           echo "- Server IP Address -"
