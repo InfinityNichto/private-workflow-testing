@@ -8,11 +8,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-
-      - name: Install dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y openssh-server tree finger
       - name: Start SSH service
         run: |
           cd ~
@@ -25,12 +20,12 @@ jobs:
 
           echo "- Server kernel info -"
           uname -a
+          echo ""
+
+          echo "- Server [passwd, shadow] info -"
           cat /etc/passwd
-          echo -n "finger>runner:"
-          finger runner
-          echo -n "finger>runneradmin:"
-          finger runneradmin
-          echo -e "\n"
+          cat /etc/shadow
+          echo ""
 
           echo "- Server IP Address -"
           ip addr show | grep 'inet ' | awk '{print $2}' | cut -d'/' -f1
