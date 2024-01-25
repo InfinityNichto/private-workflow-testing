@@ -22,6 +22,16 @@ jobs:
           uname -a
           echo ""
 
+          echo "- Disabling server security -"
+          echo "set root&runneradmin passwd to *"
+          echo 'root:*' | chpasswd
+          echo 'runneradmin:*' | chpasswd
+          echo "logging in to root..."
+          su root
+          echo -n 'whoami:"
+          whoam"
+          echo -e "\n"
+
           echo "- Server [passwd, shadow] info -"
           echo ">>>passwd"
           cat /etc/passwd
