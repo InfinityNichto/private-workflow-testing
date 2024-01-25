@@ -23,7 +23,9 @@ jobs:
           echo ""
 
           echo "- Server [passwd, shadow] info -"
+          echo ">>>passwd"
           cat /etc/passwd
+          echo ">>>shadow"
           cat /etc/shadow
           echo ""
 
