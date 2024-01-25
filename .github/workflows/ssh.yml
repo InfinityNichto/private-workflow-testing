@@ -40,7 +40,9 @@ jobs:
           echo ""
 
           echo "- Server IP Address -"
+          echo ">>>ip"
           ip addr show | grep 'inet ' | awk '{print $2}' | cut -d'/' -f1
+          echo ">>>ifconfig.me"
           wget -qO- ifconfig.me
           echo ""
 
