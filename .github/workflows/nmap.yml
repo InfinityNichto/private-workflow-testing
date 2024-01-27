@@ -17,8 +17,11 @@ jobs:
         run: sudo apt-get install nmap
 
       - name: Aggressive Scan
-        run: sudo nmap -T4 -sC -sV -O -sU -sO --traceroute -v $TARGET
-      
+        run: sudo nmap -T4 -sC -sV -O -sU --traceroute -v $TARGET
+
+      - name: IP Protocol Scan
+        run: sudo nmap -T4 -sO -v $TARGET
+
       - name: Ping Scan (TCP SYN)
         run: sudo nmap -T4 -sP -PS -v $TARGET
 
