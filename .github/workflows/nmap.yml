@@ -1,0 +1,145 @@
+name: Nmap deep scan
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  nmap_install:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Nmap
+        run: |
+          sudo apt-get install nmap
+          TARGET = "96.37.33.232"
+
+  aggressive_ping_scan:
+    needs: nmap_install
+    runs-on: ubuntu-latest
+    steps:
+      - name: Aggressive Scan
+        run: sudo nmap -T4 -sC -sV -O -sU -sO --traceroute -v $TARGET
+      
+      - name: Ping Scan (TCP SYN)
+        run: sudo nmap -T4 -sP -PS -v $TARGET
+
+      - name: Ping Scan (TCP ACK)
+        run: sudo nmap -T4 -sP -PA -v $TARGET
+
+      - name: Ping Scan (UDP)
+        run: sudo nmap -T4 -sP -PU -v $TARGET
+
+      - name: Ping Scan (ICMP echo request)
+        run: sudo nmap -T4 -sP -PE -v $TARGET
+
+      - name: Ping Scan (ICMP timestamp reply)
+        run: sudo nmap -T4 -sP -PP -v $TARGET
+
+      - name: Ping Scan (ICMP address mark reply)
+        run: sudo nmap -T4 -sP -PM -v $TARGET
+
+      - name: Ping Scan (ICMP, UDP, TCP, IGMP, IP-in-IP, SCTP)
+        run: sudo nmap -T4 -sP -PO1,17,6,2,4,132 -v $TARGET
+
+      - name: Ping Scan (ARP)
+        run: sudo nmap -T4 -sP -PR -v $TARGET
+
+  deep_port_scan:
+    needs: nmap_install
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deep Port Scan
+        run: sudo nmap -T4 -p- -v $TARGET
+
+  auth_script_scan:
+    needs: nmap_install
+    runs-on: ubuntu-latest
+    steps:
+      - name: Auth Script Scan
+        run: sudo nmap -T4 --script auth $TARGET
+
+  broadcast_script_scan:
+    needs: nmap_install
+    runs-on: ubuntu-latest
+    steps:
+      - name: Broadcast Script Scan
+        run: sudo nmap -T4 --script broadcast $TARGET
+
+  brute_script_scan:
+    needs: nmap_install
+    runs-on: ubuntu-latest
+    steps:
+      - name: Brute Script Scan
+        run: sudo nmap -T4 --script brute $TARGET
+
+  discovery_script_scan:
+    needs: nmap_install
+    runs-on: ubuntu-latest
+    steps:
+      - name: Discovery Script Scan
+        run: sudo nmap -T4 --script discovery $TARGET
+
+  dos_script_scan:
+    needs: nmap_install
+    runs-on: ubuntu-latest
+    steps:
+      - name: DoS Script Scan
+        run: sudo nmap -T4 --script dos $TARGET
+
+  exploit_script_scan:
+    needs: nmap_install
+    runs-on: ubuntu-latest
+    steps:
+      - name: Exploit Script Scan
+        run: sudo nmap -T4 --script exploit $TARGET
+
+  external_script_scan:
+    needs: nmap_install
+    runs-on: ubuntu-latest
+    steps:
+      - name: External Script Scan
+        run: sudo nmap -T4 --script external $TARGET
+
+  fuzzer_script_scan:
+    needs: nmap_install
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fuzzer Script Scan
+        run: sudo nmap -T4 --script fuzzer $TARGET
+
+  intrusive_script_scan:
+    needs: nmap_install
+    runs-on: ubuntu-latest
+    steps:
+      - name: Intrusive Script Scan
+        run: sudo nmap -T4 --script intrusive $TARGET
+
+  malware_script_scan:
+    needs: nmap_install
+    runs-on: ubuntu-latest
+    steps:
+      - name: Malware Script Scan
+        run: sudo nmap -T4 --script malware $TARGET
+
+  safe_script_scan:
+    needs: nmap_install
+    runs-on: ubuntu-latest
+    steps:
+      - name: Safe Script Scan
+        run: sudo nmap -T4 --script safe $TARGET
+
+  version_script_scan:
+    needs: nmap_install
+    runs-on: ubuntu-latest
+    steps:
+      - name: Version Script Scan
+        run: sudo nmap -T4 -sV --script version $TARGET
+
+  vuln_script_scan:
+    needs: nmap_install
+    runs-on: ubuntu-latest
+    steps:
+      - name: Vulnerability Script Scan
+        run: sudo nmap -T4 --script vuln $TARGET
