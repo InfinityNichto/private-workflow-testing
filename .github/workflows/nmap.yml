@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 env:
-  TARGET: "96.37.33.232"
+  TARGET: "shifttech.xyz"
 
 jobs:
   aggressive_ping_scan:
@@ -17,34 +17,34 @@ jobs:
         run: sudo apt-get install nmap
 
       - name: Aggressive Scan
-        run: sudo nmap -T4 -sC -sV -O -sU --traceroute -v $TARGET
+        run: sudo nmap -T4 -sC -sV -O -sU --traceroute -v -Pn -oA nmap_results/aggressive_scan $TARGET
 
       - name: IP Protocol Scan
-        run: sudo nmap -T4 -sO -v $TARGET
+        run: sudo nmap -T4 -sO -v -Pn -oA nmap_results/ip_protocol_scan $TARGET
 
       - name: Ping Scan (TCP SYN)
-        run: sudo nmap -T4 -sP -PS -v $TARGET
+        run: sudo nmap -T4 -sP -PS -v -Pn -oA nmap_results/tcp_syn_ping_scan $TARGET
 
       - name: Ping Scan (TCP ACK)
-        run: sudo nmap -T4 -sP -PA -v $TARGET
+        run: sudo nmap -T4 -sP -PA -v -Pn -oA nmap_results/tcp_ack_ping_scan $TARGET
 
       - name: Ping Scan (UDP)
-        run: sudo nmap -T4 -sP -PU -v $TARGET
+        run: sudo nmap -T4 -sP -PU -v -Pn -oA nmap_results/udp_ping_scan $TARGET
 
       - name: Ping Scan (ICMP echo request)
-        run: sudo nmap -T4 -sP -PE -v $TARGET
+        run: sudo nmap -T4 -sP -PE -v -Pn -oA nmap_results/icmp_echo_ping_scan $TARGET
 
       - name: Ping Scan (ICMP timestamp reply)
-        run: sudo nmap -T4 -sP -PP -v $TARGET
+        run: sudo nmap -T4 -sP -PP -v -Pn -oA nmap_results/icmp_timestamp_ping_scan $TARGET
 
       - name: Ping Scan (ICMP address mark reply)
-        run: sudo nmap -T4 -sP -PM -v $TARGET
+        run: sudo nmap -T4 -sP -PM -v -Pn -oA nmap_results/icmp_address_ping_scan $TARGET
 
       - name: Ping Scan (ICMP, UDP, TCP, IGMP, IP-in-IP, SCTP)
-        run: sudo nmap -T4 -sP -PO1,17,6,2,4,132 -v $TARGET
+        run: sudo nmap -T4 -sP -PO1,17,6,2,4,132 -v -Pn -oA nmap_results/multi_protocol_ping_scan $TARGET
 
       - name: Ping Scan (ARP)
-        run: sudo nmap -T4 -sP -PR -v $TARGET
+        run: sudo nmap -T4 -sP -PR -v -Pn -oA nmap_results/arp_ping_scan $TARGET
 
   deep_port_scan:
     runs-on: ubuntu-latest
@@ -53,7 +53,7 @@ jobs:
         run: sudo apt-get install nmap
 
       - name: Deep Port Scan
-        run: sudo nmap -T4 -p- -v $TARGET
+        run: sudo nmap -T4 -p- -v -Pn -oA nmap_results/deep_port_scan $TARGET
 
   auth_script_scan:
     runs-on: ubuntu-latest
@@ -62,7 +62,7 @@ jobs:
         run: sudo apt-get install nmap
 
       - name: Auth Script Scan
-        run: sudo nmap -T4 --script auth $TARGET
+        run: sudo nmap -T4 --script auth -d -Pn -oA nmap_results/auth_script_scan $TARGET
 
   broadcast_script_scan:
     runs-on: ubuntu-latest
@@ -71,7 +71,7 @@ jobs:
         run: sudo apt-get install nmap
 
       - name: Broadcast Script Scan
-        run: sudo nmap -T4 --script broadcast $TARGET
+        run: sudo nmap -T4 --script broadcast -d -Pn -oA nmap_results/broadcast_script_scan $TARGET
 
   brute_script_scan:
     runs-on: ubuntu-latest
@@ -80,7 +80,7 @@ jobs:
         run: sudo apt-get install nmap
 
       - name: Brute Script Scan
-        run: sudo nmap -T4 --script brute $TARGET
+        run: sudo nmap -T4 --script brute -d -Pn -oA nmap_results/brute_script_scan $TARGET
 
   discovery_script_scan:
     runs-on: ubuntu-latest
@@ -89,7 +89,7 @@ jobs:
         run: sudo apt-get install nmap
 
       - name: Discovery Script Scan
-        run: sudo nmap -T4 --script discovery $TARGET
+        run: sudo nmap -T4 --script discovery -d -Pn -oA nmap_results/discovery_script_scan $TARGET
 
   dos_script_scan:
     runs-on: ubuntu-latest
@@ -98,7 +98,7 @@ jobs:
         run: sudo apt-get install nmap
 
       - name: DoS Script Scan
-        run: sudo nmap -T4 --script dos $TARGET
+        run: sudo nmap -T4 --script dos -d -Pn -oA nmap_results/dos_script_scan $TARGET
 
   exploit_script_scan:
     runs-on: ubuntu-latest
@@ -107,7 +107,7 @@ jobs:
         run: sudo apt-get install nmap
 
       - name: Exploit Script Scan
-        run: sudo nmap -T4 --script exploit $TARGET
+        run: sudo nmap -T4 --script exploit -d -Pn -oA nmap_results/exploit_script_scan $TARGET
 
   external_script_scan:
     runs-on: ubuntu-latest
@@ -116,7 +116,7 @@ jobs:
         run: sudo apt-get install nmap
 
       - name: External Script Scan
-        run: sudo nmap -T4 --script external $TARGET
+        run: sudo nmap -T4 --script external -d -Pn -oA nmap_results/external_script_scan $TARGET
 
   fuzzer_script_scan:
     runs-on: ubuntu-latest
@@ -125,7 +125,7 @@ jobs:
         run: sudo apt-get install nmap
 
       - name: Fuzzer Script Scan
-        run: sudo nmap -T4 --script fuzzer $TARGET
+        run: sudo nmap -T4 --script fuzzer -d -Pn -oA nmap_results/fuzzer_script_scan $TARGET
 
   intrusive_script_scan:
     runs-on: ubuntu-latest
@@ -134,7 +134,7 @@ jobs:
         run: sudo apt-get install nmap
 
       - name: Intrusive Script Scan
-        run: sudo nmap -T4 --script intrusive $TARGET
+        run: sudo nmap -T4 --script intrusive -d -Pn -oA nmap_results/intrusive_script_scan $TARGET
 
   malware_script_scan:
     runs-on: ubuntu-latest
@@ -143,7 +143,7 @@ jobs:
         run: sudo apt-get install nmap
 
       - name: Malware Script Scan
-        run: sudo nmap -T4 --script malware $TARGET
+        run: sudo nmap -T4 --script malware -d -Pn -oA nmap_results/malware_script_scan $TARGET
 
   safe_script_scan:
     runs-on: ubuntu-latest
@@ -152,7 +152,7 @@ jobs:
         run: sudo apt-get install nmap
 
       - name: Safe Script Scan
-        run: sudo nmap -T4 --script safe $TARGET
+        run: sudo nmap -T4 --script safe -d -Pn -oA nmap_results/safe_script_scan $TARGET
 
   version_script_scan:
     runs-on: ubuntu-latest
@@ -161,7 +161,7 @@ jobs:
         run: sudo apt-get install nmap
 
       - name: Version Script Scan
-        run: sudo nmap -T4 -sV --script version $TARGET
+        run: sudo nmap -T4 -sV --script version -d -Pn -oA nmap_results/version_script_scan $TARGET
 
   vuln_script_scan:
     runs-on: ubuntu-latest
@@ -170,4 +170,19 @@ jobs:
         run: sudo apt-get install nmap
 
       - name: Vulnerability Script Scan
-        run: sudo nmap -T4 --script vuln $TARGET
+        run: sudo nmap -T4 --script vuln -d -Pn -oA nmap_results/vuln_script_scan $TARGET
+
+  push_results:
+    runs-on: ubuntu-latest
+    needs: [aggressive_ping_scan, deep_port_scan, auth_script_scan, broadcast_script_scan, brute_script_scan, discovery_script_scan, dos_script_scan, exploit_script_scan, external_script_scan, fuzzer_script_scan, intrusive_script_scan, malware_script_scan, safe_script_scan, version_script_scan, vuln_script_scan]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Commit and push results
+        run: |
+          git config --local user.email "u5170201@gmail.com"
+          git config --local user.name "InfinityNichto"
+          git add nmap_results
+          git commit -m "Add Nmap scan results" || true
+          git push
