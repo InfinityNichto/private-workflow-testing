@@ -13,7 +13,7 @@ jobs:
       - name: Install Nmap
         run: |
           sudo apt-get install nmap
-          TARGET = "96.37.33.232"
+          export TARGET="96.37.33.232"
 
   aggressive_ping_scan:
     needs: nmap_install
