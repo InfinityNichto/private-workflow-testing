@@ -17,15 +17,19 @@ let parseIteration = 0;
 function parse(array) {
     const obj = {};
 
-    array.forEach((row, i) => {
-        row.forEach((element, j) => {
-            obj[element] = obj[element] || [];
-            obj[element].push([i, j]);
-            parseIteration++;
-        });
-    });
+    const numRows = array.length;
+    const numCols = array[0].length;
 
-    console.log(`parse() took ${parseIteration} iterations`);
+    for (let index = 0; index < numRows * numCols; index++) {
+        const row = Math.floor(index / numCols);
+        const col = index % numCols;
+        const element = array[row][col];
+
+        obj[element] = obj[element] || [];
+        obj[element].push([row, col]);
+        parseIteration++;
+    }
+
     return obj;
 }
 
