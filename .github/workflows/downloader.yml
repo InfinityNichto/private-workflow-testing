@@ -1,0 +1,33 @@
+name: File Donwnloader
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run-js:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Installing dependencies
+        run: sudo apt-get install p7zip-full
+
+      - name: Donwloading file
+        run: wget -v -O downloaded.zip https://download131.uploadhaven.com/1/application/zip/g7GSUhIf73noqbdK8oG0Z2hUx2oKHTDajbnomgcH.zip?key=GcnF5mkBfb5jEjEG7CzGXg&expire=1708309745&filename=Terraria.v1.4.4.9.zip
+
+      - name: Splitting file
+        run: 7z a -v90m -tzip -bsp1 split.zip donwloaded.zip
+
+      - name: Finishing up
+        run: |
+          7z e split.zip -bsp1 -o/dl-out
+          rm downloaded.zip
+          rm split.zip
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: downloaded-files
+          path: dl-out/
