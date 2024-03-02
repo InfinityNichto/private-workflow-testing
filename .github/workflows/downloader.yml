@@ -15,7 +15,7 @@ jobs:
         run: sudo apt-get install p7zip-full
 
       - name: Donwloading file
-        run: wget -v -O downloaded.zip https://download131.uploadhaven.com/1/application/zip/g7GSUhIf73noqbdK8oG0Z2hUx2oKHTDajbnomgcH.zip?key=GcnF5mkBfb5jEjEG7CzGXg&expire=1708309745&filename=Terraria.v1.4.4.9.zip
+        run: wget -v -O downloaded.zip https://mirror.citrahost.com/archlinux/iso/2024.03.01/archlinux-2024.03.01-x86_64.iso
 
       - name: Splitting file
         run: 7z a -v90m -tzip -bsp1 split.zip donwloaded.zip
