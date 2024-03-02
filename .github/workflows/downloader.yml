@@ -19,15 +19,15 @@ jobs:
 
       - name: Splitting file
         run: |
-          7z a -v90m -tzip -bsp1 split.zip downloaded.zip
+          7z a -v90m -tzip -bsp1 dl-out/split.zip downloaded.zip
           ls -a
 
       - name: Finishing up
         run: |
           ls -a
-          7z e split.zip -bsp1 -o/dl-out
+          # 7z e split.zip -bsp1 -o/dl-out
           rm downloaded.zip
-          rm split.zip
+          # rm split.zip
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
