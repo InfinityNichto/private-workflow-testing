@@ -1,10 +1,10 @@
-name: File Donwnloader
+name: File Downloader
 
 on:
   workflow_dispatch:
 
 jobs:
-  donwnloader:
+  downloader:
     runs-on: ubuntu-latest
 
     steps:
@@ -14,14 +14,17 @@ jobs:
       - name: Installing dependencies
         run: sudo apt-get install p7zip-full
 
-      - name: Donwloading file
+      - name: Downloading file
         run: wget -v -O downloaded.zip https://mirror.citrahost.com/archlinux/iso/2024.03.01/archlinux-2024.03.01-x86_64.iso
 
       - name: Splitting file
-        run: 7z a -v90m -tzip -bsp1 split.zip downloaded.zip
+        run: |
+          7z a -v90m -tzip -bsp1 split.zip downloaded.zip
+          ls -a
 
       - name: Finishing up
         run: |
+          ls -a
           7z e split.zip -bsp1 -o/dl-out
           rm downloaded.zip
           rm split.zip
