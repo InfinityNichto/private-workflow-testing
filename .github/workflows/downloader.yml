@@ -18,7 +18,7 @@ jobs:
         run: wget -v -O downloaded.zip https://mirror.citrahost.com/archlinux/iso/2024.03.01/archlinux-2024.03.01-x86_64.iso
 
       - name: Splitting file
-        run: 7z a -v90m -tzip -bsp1 split.zip donwloaded.zip
+        run: 7z a -v90m -tzip -bsp1 split.zip downloaded.zip
 
       - name: Finishing up
         run: |
