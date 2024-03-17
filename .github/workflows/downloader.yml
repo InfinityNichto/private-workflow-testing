@@ -15,7 +15,7 @@ jobs:
         run: sudo apt-get install p7zip-full
 
       - name: Downloading file
-        run: wget -v -O downloaded.zip https://mirror.citrahost.com/archlinux/iso/2024.03.01/archlinux-2024.03.01-x86_64.iso
+        run: wget -v -O downloaded.zip https://ytmp3hub.com/download
 
       - name: Splitting file
         run: |
@@ -26,7 +26,7 @@ jobs:
         run: |
           ls -a
           # 7z e split.zip -bsp1 -o/dl-out
-          rm downloaded.zip
+          mv downloaded.zip dl-out
           # rm split.zip
 
       - name: Upload artifact
