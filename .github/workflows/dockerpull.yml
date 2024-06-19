@@ -23,12 +23,15 @@ jobs:
       - name: Run Docker container
         run: |
           CONTAINER_NAME="android-retools"
+          IMAGE_NAME="cryptax/android-re:2024.02"
           echo "Running Docker container..."
-          echo "version: '3.7'
+          cat <<EOL > docker-compose.yml
+          version: '3.7'
           services:
             $CONTAINER_NAME:
               image: $IMAGE_NAME
-              container_name: $CONTAINER_NAME" > docker-compose.yml
+              container_name: $CONTAINER_NAME
+          EOL
           docker-compose up -d
 
       - name: Get container ID
